@@ -31,9 +31,7 @@ export default function allusers() {
   const[getmobile,setmobile]=useState("");
   const[getJoinDate,setJonDate]=useState("");
 
-  // const handleSomeEvent = () => {
-  //   fetchData();  // You can call fetchData anywhere now
-  // };
+
   
   // Sample data for chat list
   const fetchData = async () => {
