@@ -55,7 +55,7 @@ export default function StartScreen() {
         </View>
         <View style={styleSheet.view2}>
           <View style={styleSheet.view3}></View>
-          <TouchableOpacity onPress={()=>{router.replace("/SignIn");}}>
+          <TouchableOpacity onPress={()=>{router.replace("/Home");}}>
             <LottieView
               autoPlay 
               style={{
