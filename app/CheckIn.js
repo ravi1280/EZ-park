@@ -2,16 +2,19 @@ import * as SplashScreen from "expo-splash-screen";
 import {
   StyleSheet,
   Text,
+  TextInput,
   View,
   TouchableOpacity,
+  Modal,
+  Alert,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 import { Image } from "expo-image";
 import { StatusBar } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 import { router } from "expo-router";
-import LottieView from "lottie-react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,48 +44,49 @@ export default function home() {
       <StatusBar backgroundColor={"#fff"} />
 
       <View style={styleSheet.header}>
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              router.push("/Home");
+            }}
+          >
+            <Icon name="arrow-back" size={24} color="#555" />
+          </TouchableOpacity>
+        </View>
         <View style={styleSheet.profileInfo}>
-          <Image source={logoPath1} style={styleSheet.avatar} />
+          <Image
+            source={require("../assets/Images/parking.png")}
+            style={styleSheet.avatar}
+          />
           <View style={styleSheet.userDetails}>
-            <Text style={styleSheet.accountText}>EZ-Park</Text>
+            <Text style={styleSheet.accountText}>Check In</Text>
           </View>
         </View>
       </View>
+      <View style={styleSheet.View1}>
+        <View style={styleSheet.inputView1}>
+          <Text>Mobile Number</Text>
+          <TextInput style={styleSheet.textInput} keyboardType={"number-pad"}/>
+        </View>
+        <View style={styleSheet.inputView1}>
+          <Text>Vehical Number</Text>
+          <TextInput style={styleSheet.textInput}  />
+        </View>
 
-      <View style={styleSheet.alertView}>
-        <LottieView
-          autoPlay
-          style={{
-            width: 320,
-            height: 200,
-          }}
-          source={require("../assets/Animation/Alert.json")}
-          
-        />
-      </View>
-
-      <View style={styleSheet.view3}>
-        <View style={styleSheet.countGroup}>
-          <View style={styleSheet.slotCount}>
-            <Text>Slot Count</Text>
-            <Text>20/5</Text>
+        <TouchableOpacity onpress={()=>{Alert.alert("Message"," Success!");}}>
+          <View style={styleSheet.inputView2}>
+            <Text>Parking Slot Reseved</Text>
           </View>
-          <View style={styleSheet.priceCount}>
-            <Text>Total Price</Text>
-            <Text>Rs:10,000.00</Text>
+        </TouchableOpacity>
+
+        <View style={styleSheet.gate} >
+          <View style={styleSheet.inputView3}>
+            <Text>Gate Open</Text>
+          </View>
+          <View style={styleSheet.inputView3}>
+            <Text>Gate Close</Text>
           </View>
         </View>
-        <TouchableOpacity onPress={()=>{router.push("/CheckIn");}}>
-          <View style={styleSheet.check}>
-            <Text>Check In</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={()=>{router.push("/CheckOut");}}>
-          <View style={styleSheet.check}>
-            <Text>Check Out</Text>
-          </View>
-        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -90,11 +94,11 @@ export default function home() {
 const styleSheet = StyleSheet.create({
   header: {
     flexDirection: "row",
-    justifyContent: "center",
+    // justifyContent: 'space-between',
     columnGap: 20,
     paddingHorizontal: 20,
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 50,
     backgroundColor: "#fff",
     paddingVertical: 10,
     height: 80,
@@ -125,48 +129,39 @@ const styleSheet = StyleSheet.create({
     // color: "#662d91",
   },
 
-  view3: {
-    backgroundColor: "white",
-    width: "100%",
-    height: 400,
-    // borderRadius: 40,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    padding: 20,
-    marginTop: -25,
-
-    elevation: 5,
-
-    // borderWidth: 5,
-  },
-  countGroup: {
-    marginVertical: 40,
-    flexDirection: "row",
-    columnGap: 20,
-    justifyContent: "space-around",
-  },
-  slotCount: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#FFB84D",
-    borderRadius: 20,
-  },
-  priceCount: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#FFB84D",
-    borderRadius: 20,
-  },
-  check: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#FFB84D",
+  textInput: {
+    borderColor: "yellow",
+    borderWidth: 2,
+    padding: 10,
     borderRadius: 20,
     marginBottom: 10,
+  },
+  inputView1: {},
+  inputView2: {
+    // flex:1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#FFB84D",
+    borderRadius: 20,
+    marginVertical: 20,
+  },
+  inputView3: {
+    flex:1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#FFB84D",
+    borderRadius: 20,
+    marginVertical: 20,
+  },
+  View1:{
+    padding:20,
+  },
+  gate:{
+    // marginVertical: 10,
+    flexDirection: "row",
+    columnGap: 15,
+    justifyContent: "center",
   },
 });
