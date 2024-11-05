@@ -16,7 +16,6 @@ import LottieView from "lottie-react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function home() {
-  const [getmodalVisible, setModalVisible] = useState(false);
   const [loaded, error] = useFonts({
     "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
     "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
