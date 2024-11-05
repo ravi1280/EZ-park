@@ -3,15 +3,12 @@ import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Image } from "expo-image";
 import LottieView from "lottie-react-native";
 import { TouchableOpacity } from "react-native";
-import { Alert } from "react-native";
 import { router } from "expo-router";
-import { ScrollView } from "react-native";
-import BASE_URL from "./server";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,16 +34,16 @@ export default function StartScreen() {
   }
 
   
-  const logoPath = require("../assets/Images/HomeMain.png");
+  const logoPath = require("../assets/Images/City driver-pana.png");
 
   return (
    
-    <LinearGradient colors={["#662d91", "#E6E6FA"]} style={styleSheet.Lview1}>
-      <StatusBar backgroundColor={'#662d91'} />
+    <LinearGradient colors={["#FFB84D", "#FFF9B0"]} style={styleSheet.Lview1}>
+      <StatusBar backgroundColor={'#FFB84D'} />
       <SafeAreaView>
-        <ScrollView>
+        {/* <ScrollView> */}
         <View style={styleSheet.view1}>
-          <Text style={styleSheet.Text1}>EZ park</Text>
+          <Text style={styleSheet.Text1}>EZ - Park</Text>
         </View>
         <View>
           <Image
@@ -78,7 +75,7 @@ export default function StartScreen() {
             <Text>Copyright ©EZpark 2024 || All rights reserved.</Text>
           </View>
         </View>
-        </ScrollView>
+        {/* </ScrollView> */}
       </SafeAreaView>
     </LinearGradient>
   );
@@ -112,7 +109,7 @@ const styleSheet = StyleSheet.create({
   },
   Text1: {
     fontSize: 35,
-    fontFamily: "Oxygen-Bold",
+    // fontFamily: "Oxygen-Bold",
     color: "white",
   },
   view3: {
