@@ -36,10 +36,10 @@ export default function home() {
         //convert to js object
         let json = await response.json();
         if (json.success) {
-          // Alert.alert("Message",json.total_price);
+          
           settotal(json.total_price);
         } else {
-          // Alert.alert("Message",json.message);
+       
         }
       }
     }
