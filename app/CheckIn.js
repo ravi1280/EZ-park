@@ -66,26 +66,41 @@ export default function home() {
       <View style={styleSheet.View1}>
         <View style={styleSheet.inputView1}>
           <Text>Mobile Number</Text>
-          <TextInput style={styleSheet.textInput} keyboardType={"number-pad"}/>
+          <TextInput style={styleSheet.textInput} keyboardType={"number-pad"} />
         </View>
         <View style={styleSheet.inputView1}>
           <Text>Vehical Number</Text>
-          <TextInput style={styleSheet.textInput}  />
+          <TextInput style={styleSheet.textInput} />
         </View>
 
-        <TouchableOpacity onpress={()=>{Alert.alert("Message"," Success!");}}>
+        <TouchableOpacity
+          onPress={() => {
+            Alert.alert("Message", " Success!");
+          }}
+        >
           <View style={styleSheet.inputView2}>
             <Text>Parking Slot Reseved</Text>
           </View>
         </TouchableOpacity>
 
-        <View style={styleSheet.gate} >
-          <View style={styleSheet.inputView3}>
+        <View style={styleSheet.gate}>
+          <TouchableOpacity
+            style={styleSheet.inputView3}
+            onPress={ async() => {
+              let response = await fetch("http://192.168.1.4?status=90");
+              Alert.alert("Message", " Success!");
+            }}
+          >
             <Text>Gate Open</Text>
-          </View>
-          <View style={styleSheet.inputView3}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styleSheet.inputView3}
+            onPress={async () => {
+              let response = await fetch("http://192.168.1.4?status=80");
+            }}
+          >
             <Text>Gate Close</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </LinearGradient>
@@ -147,7 +162,7 @@ const styleSheet = StyleSheet.create({
     marginVertical: 20,
   },
   inputView3: {
-    flex:1,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
@@ -155,10 +170,10 @@ const styleSheet = StyleSheet.create({
     borderRadius: 20,
     marginVertical: 20,
   },
-  View1:{
-    padding:20,
+  View1: {
+    padding: 20,
   },
-  gate:{
+  gate: {
     // marginVertical: 10,
     flexDirection: "row",
     columnGap: 15,

@@ -1,10 +1,5 @@
 import * as SplashScreen from "expo-splash-screen";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
@@ -22,6 +17,7 @@ export default function home() {
     "Oxygen-Bold": require("../assets/Fonts/Oxygen-Bold.ttf"),
     "Oxygen-Regular": require("../assets/Fonts/Oxygen-Regular.ttf"),
   });
+  const [distance, setDistance] = useState(null);
 
   useEffect(() => {
     if (loaded || error) {
@@ -32,7 +28,26 @@ export default function home() {
   if (!loaded && !error) {
     return null;
   }
-
+  // let requestSender ;
+  // useEffect(() => {
+  //   async function fetchChatArray() {
+  //     let response = await fetch( "http://192.168.1.4?status=122");
+  //     if (response.ok) {
+  //       let jsonData = await response.json();
+  //       console.log(jsonData);
+  //       // setDistance(chatAray);
+  //     }
+  //   }
+  //   fetchChatArray();
+  //   if (requestSender == null) {
+  //     requestSender = setInterval(fetchChatArray, 2000);
+  //   }
+  //   return () => {
+  //     clearInterval(requestSender);
+  //   };
+    
+  // }, []);
+ 
   const logoPath1 = require("../assets/Images/parking.png");
 
   return (
@@ -56,7 +71,6 @@ export default function home() {
             height: 200,
           }}
           source={require("../assets/Animation/Alert.json")}
-          
         />
       </View>
 
@@ -71,13 +85,21 @@ export default function home() {
             <Text>Rs:10,000.00</Text>
           </View>
         </View>
-        <TouchableOpacity onPress={()=>{router.push("/CheckIn");}}>
+        <TouchableOpacity
+          onPress={() => {
+            router.push("/CheckIn");
+          }}
+        >
           <View style={styleSheet.check}>
             <Text>Check In</Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=>{router.push("/CheckOut");}}>
+        <TouchableOpacity
+          onPress={() => {
+            router.push("/CheckOut");
+          }}
+        >
           <View style={styleSheet.check}>
             <Text>Check Out</Text>
           </View>
