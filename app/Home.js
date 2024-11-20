@@ -104,6 +104,15 @@ export default function home() {
             <Text>Check Out</Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            router.push("/ultrasonic");
+          }}
+        >
+          <View style={styleSheet.check}>
+            <Text>Ultrasonic</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
