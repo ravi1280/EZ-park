@@ -17,7 +17,7 @@ ws.onmessage = e => {
 
 ws.onerror = e => {
     console.log(e.message);
-};
+}; 
 
 ws.onclose = e => {
     console.log(e.code, e.reason);
