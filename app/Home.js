@@ -17,7 +17,7 @@ export default function home() {
     "Oxygen-Bold": require("../assets/Fonts/Oxygen-Bold.ttf"),
     "Oxygen-Regular": require("../assets/Fonts/Oxygen-Regular.ttf"),
   });
-  const [distance, setDistance] = useState(null);
+  const [gettotal, settotal] = useState("");
 
   useEffect(() => {
     if (loaded || error) {
@@ -28,25 +28,24 @@ export default function home() {
   if (!loaded && !error) {
     return null;
   }
-  // let requestSender ;
-  // useEffect(() => {
-  //   async function fetchChatArray() {
-  //     let response = await fetch( "http://192.168.1.4?status=122");
-  //     if (response.ok) {
-  //       let jsonData = await response.json();
-  //       console.log(jsonData);
-  //       // setDistance(chatAray);
-  //     }
-  //   }
-  //   fetchChatArray();
-  //   if (requestSender == null) {
-  //     requestSender = setInterval(fetchChatArray, 2000);
-  //   }
-  //   return () => {
-  //     clearInterval(requestSender);
-  //   };
-    
-  // }, []);
+ 
+  useEffect(() => {
+    async function totalPrice() {
+      let response = await fetch("https://68b0-112-134-227-25.ngrok-free.app/EZPark/totalPrice");
+      if (response.ok) {
+        //convert to js object
+        let json = await response.json();
+        if (json.success) {
+          // Alert.alert("Message",json.total_price);
+          settotal(json.total_price);
+        } else {
+          // Alert.alert("Message",json.message);
+        }
+      }
+    }
+    totalPrice();
+
+  }, []);
  
   const logoPath1 = require("../assets/Images/parking.png");
 
@@ -82,7 +81,7 @@ export default function home() {
           </View>
           <View style={styleSheet.priceCount}>
             <Text>Total Price</Text>
-            <Text>Rs:10,000.00</Text>
+            <Text>${gettotal}</Text>
           </View>
         </View>
         <TouchableOpacity

@@ -19,6 +19,11 @@ import { router } from "expo-router";
 SplashScreen.preventAutoHideAsync();
 
 export default function CheckOut() {
+  const [getmobile, setmobile] = useState("");
+  const [getvehhicalNumber, setvehicalNumber] = useState("");
+  const [getparkTime, setparkTime] = useState("_ _");
+  const [getprice, setprice] = useState("_ _");
+
   const [loaded, error] = useFonts({
     "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
     "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
@@ -65,23 +70,50 @@ export default function CheckOut() {
       <View style={styleSheet.View1}>
         <View style={styleSheet.inputView1}>
           <Text>Mobile Number</Text>
-          <TextInput style={styleSheet.textInput} keyboardType={"number-pad"}/>
+          <TextInput style={styleSheet.textInput} keyboardType={"number-pad"} onChangeText={(text) => {
+              setmobile(text);
+              // console.log(getpassword);
+            }}/>
         </View>
         <View style={styleSheet.inputView1}>
           <Text>Vehical Number</Text>
-          <TextInput style={styleSheet.textInput}  />
+          <TextInput style={styleSheet.textInput} onChangeText={(text) => {
+              setvehicalNumber(text);
+              // console.log(getpassword);
+            }}  />
         </View>
+        <TouchableOpacity onPress={async () => {
+          let response = await fetch("https://68b0-112-134-227-25.ngrok-free.app/EZPark/CheckOut?mobile="+getmobile+"&vNumber="+getvehhicalNumber);
+       
+
+        if (response.ok) {
+          //convert to js object
+          let json = await response.json();
+          if (json.success) {
+            Alert.alert("Message",json.message);
+            setparkTime(json.parkTime);
+            setprice(json.payment);
+          } else {
+            Alert.alert("Message",json.message);
+          }
+        }
+        }}>
+          <View style={styleSheet.inputView2}>
+            <Text>Search Vehical Details !</Text>
+          </View>
+        </TouchableOpacity>
         <View style={styleSheet.gate} >
           <View style={styleSheet.inputView3}>
             <Text>Park Time</Text>
-            <Text>2h and 45 min</Text>
+            <Text>{getparkTime} min</Text>
           </View>
           <View style={styleSheet.inputView3}>
-            <Text>Price(50 per Hour)</Text>
-            <Text>Rs:300.00</Text>
+            <Text>Price(2$ per 5min)</Text>
+            <Text>${getprice}</Text>
           </View>
         </View>
        
+        
 
         <View style={styleSheet.gate} >
           <View style={styleSheet.inputView3}>

@@ -19,7 +19,10 @@ import { router } from "expo-router";
 SplashScreen.preventAutoHideAsync();
 
 export default function home() {
-  const [getmodalVisible, setModalVisible] = useState(false);
+  const [getmobile, setmobile] = useState("");
+  const [getvehhicalNumber, setvehicalNumber] = useState("");
+
+
   const [loaded, error] = useFonts({
     "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
     "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
@@ -66,17 +69,41 @@ export default function home() {
       <View style={styleSheet.View1}>
         <View style={styleSheet.inputView1}>
           <Text>Mobile Number</Text>
-          <TextInput style={styleSheet.textInput} keyboardType={"number-pad"} />
+          <TextInput
+            style={styleSheet.textInput}
+            keyboardType={"number-pad"}
+            onChangeText={(text) => {
+              setmobile(text);
+              // console.log(getpassword);
+            }}
+          />
         </View>
         <View style={styleSheet.inputView1}>
           <Text>Vehical Number</Text>
-          <TextInput style={styleSheet.textInput} />
+          <TextInput
+            style={styleSheet.textInput}
+            onChangeText={(text) => {
+              setvehicalNumber(text);
+            }}
+          />
         </View>
 
         <TouchableOpacity
-          onPress={() => {
-            Alert.alert("Message", " Success!");
-          }}
+        onPress={async () => {
+          let response = await fetch("https://68b0-112-134-227-25.ngrok-free.app/EZPark/CheckIn?mobile="+getmobile+"&vNumber="+getvehhicalNumber);
+       
+
+        if (response.ok) {
+          //convert to js object
+          let json = await response.json();
+          if (json.success) {
+            Alert.alert("Message",json.message);
+          } else {
+            Alert.alert("Message",json.message);
+          }
+        }
+        }}
+         
         >
           <View style={styleSheet.inputView2}>
             <Text>Parking Slot Reseved</Text>
@@ -86,7 +113,7 @@ export default function home() {
         <View style={styleSheet.gate}>
           <TouchableOpacity
             style={styleSheet.inputView3}
-            onPress={ async() => {
+            onPress={async () => {
               let response = await fetch("http://192.168.1.4?status=90");
               Alert.alert("Message", " Success!");
             }}
