@@ -31,7 +31,7 @@ export default function home() {
  
   useEffect(() => {
     async function totalPrice() {
-      let response = await fetch("https://68b0-112-134-227-25.ngrok-free.app/EZPark/totalPrice");
+      let response = await fetch("https://4f71-138-124-184-173.ngrok-free.app/EZPark/totalPrice");
       if (response.ok) {
         //convert to js object
         let json = await response.json();

@@ -90,7 +90,7 @@ export default function home() {
 
         <TouchableOpacity
         onPress={async () => {
-          let response = await fetch("https://68b0-112-134-227-25.ngrok-free.app/EZPark/CheckIn?mobile="+getmobile+"&vNumber="+getvehhicalNumber);
+          let response = await fetch("https://4f71-138-124-184-173.ngrok-free.app/EZPark/CheckIn?mobile="+getmobile+"&vNumber="+getvehhicalNumber);
        
 
         if (response.ok) {
