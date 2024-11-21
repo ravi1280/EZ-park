@@ -83,12 +83,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const DistanceApp = () => {
+export default function DistanceApp  () {
     const [distance, setDistance] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const ws = new WebSocket('ws://<your-server-ip>:<port>/distance');
+        const ws = new WebSocket('ws://c9d5-112-134-231-66.ngrok-free.app/EZPark/distance');
 
         ws.onopen = () => {
             console.log('WebSocket connection opened');
@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DistanceApp;
+

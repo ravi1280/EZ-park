@@ -11,6 +11,9 @@ import LottieView from "lottie-react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function home() {
+  const [distance, setDistance] = useState(false);
+  const [error1, setError1] = useState(null);
+
   const [loaded, error] = useFonts({
     "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
     "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
@@ -28,25 +31,57 @@ export default function home() {
   if (!loaded && !error) {
     return null;
   }
- 
+
+  useEffect(() => {
+    const ws = new WebSocket(
+      "ws://c9d5-112-134-231-66.ngrok-free.app/EZPark/distance"
+    );
+
+    ws.onopen = () => {
+      console.log("WebSocket connection opened");
+    };
+
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        setDistance(data.distance);
+        console.log(data.distance)
+      } catch (err) {
+        console.error("Error parsing message:", err);
+      }
+    };
+
+    ws.onerror = (e) => {
+      setError1(e.message);
+      console.error("WebSocket error:", e.message);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+
+    return () => {
+      ws.close();
+    };
+  }, []);
+
   useEffect(() => {
     async function totalPrice() {
-      let response = await fetch(process.env.EXPO_PUBLIC_URL+"/EZPark/totalPrice");
+      let response = await fetch(
+        process.env.EXPO_PUBLIC_URL + "/EZPark/totalPrice"
+      );
       if (response.ok) {
         //convert to js object
         let json = await response.json();
         if (json.success) {
-          
           settotal(json.total_price);
         } else {
-       
         }
       }
     }
     totalPrice();
-
   }, []);
- 
+
   const logoPath1 = require("../assets/Images/parking.png");
 
   return (
@@ -61,17 +96,22 @@ export default function home() {
           </View>
         </View>
       </View>
-
-      <View style={styleSheet.alertView}>
-        <LottieView
-          autoPlay
-          style={{
-            width: 320,
-            height: 200,
-          }}
-          source={require("../assets/Animation/Alert.json")}
-        />
-      </View>
+      {distance !== false ? (
+        <View style={styleSheet.alertView}>
+          <LottieView
+            autoPlay
+            style={{
+              width: 320,
+              height: 200,
+            }}
+            source={require("../assets/Animation/Alert.json")}
+          />
+        </View>
+      ) : (
+        <View style={styleSheet.alertView}>
+          <Text>none</Text>
+        </View>
+      )}
 
       <View style={styleSheet.view3}>
         <View style={styleSheet.countGroup}>
