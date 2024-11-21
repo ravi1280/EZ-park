@@ -111,7 +111,7 @@ export default function home() {
         </TouchableOpacity>
 
         <View style={styleSheet.gate}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styleSheet.inputView3}
             onPress={async () => {
               let response = await fetch("http://192.168.1.4?status=90");
@@ -119,15 +119,15 @@ export default function home() {
             }}
           >
             <Text>Gate Open</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity
             style={styleSheet.inputView3}
             onPress={async () => {
               let response = await fetch("http://192.168.1.4?status=80");
             }}
           >
             <Text>Gate Close</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </LinearGradient>
