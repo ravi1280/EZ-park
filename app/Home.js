@@ -14,23 +14,7 @@ export default function home() {
   const [distance, setDistance] = useState(false);
   const [error1, setError1] = useState(null);
 
-  const [loaded, error] = useFonts({
-    "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
-    "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
-    "Oxygen-Bold": require("../assets/Fonts/Oxygen-Bold.ttf"),
-    "Oxygen-Regular": require("../assets/Fonts/Oxygen-Regular.ttf"),
-  });
-  const [gettotal, settotal] = useState("");
-
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
-
-  if (!loaded && !error) {
-    return null;
-  }
+  
 
   useEffect(() => {
     const ws = new WebSocket(
