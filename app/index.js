@@ -2,8 +2,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
-import { useFonts } from "expo-font";
-import { useEffect } from "react";
 import { Image } from "expo-image";
 import LottieView from "lottie-react-native";
 import { TouchableOpacity } from "react-native";
