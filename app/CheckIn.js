@@ -23,23 +23,6 @@ export default function home() {
   const [getvehhicalNumber, setvehicalNumber] = useState("");
 
 
-  const [loaded, error] = useFonts({
-    "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
-    "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
-    "Oxygen-Bold": require("../assets/Fonts/Oxygen-Bold.ttf"),
-    "Oxygen-Regular": require("../assets/Fonts/Oxygen-Regular.ttf"),
-  });
-
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
-
-  if (!loaded && !error) {
-    return null;
-  }
-
   const logoPath1 = require("../assets/Images/parking.png");
 
   return (
@@ -111,7 +94,7 @@ export default function home() {
         </TouchableOpacity>
 
         <View style={styleSheet.gate}>
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={styleSheet.inputView3}
             onPress={async () => {
               let response = await fetch("http://192.168.1.4?status=90");
@@ -119,15 +102,15 @@ export default function home() {
             }}
           >
             <Text>Gate Open</Text>
-          </TouchableOpacity> */}
-          {/* <TouchableOpacity
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styleSheet.inputView3}
             onPress={async () => {
               let response = await fetch("http://192.168.1.4?status=80");
             }}
           >
             <Text>Gate Close</Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
         </View>
       </View>
     </LinearGradient>
