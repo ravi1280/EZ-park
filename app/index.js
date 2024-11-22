@@ -14,25 +14,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function StartScreen() {
 
-  const [loaded, error] = useFonts({
-    "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
-    "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
-    "Oxygen-Bold": require("../assets/Fonts/Oxygen-Bold.ttf"),
-    "Oxygen-Regular": require("../assets/Fonts/Oxygen-Regular.ttf"),
-  });
-
-  
-
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
-
-  if (!loaded && !error) {
-    return null;
-  }
-
+ 
   
   const logoPath = require("../assets/Images/City driver-pana.png");
 
