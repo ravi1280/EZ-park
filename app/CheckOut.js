@@ -24,22 +24,6 @@ export default function CheckOut() {
   const [getparkTime, setparkTime] = useState("_ _");
   const [getprice, setprice] = useState("_ _");
 
-  const [loaded, error] = useFonts({
-    "Poppins-Bold": require("../assets/Fonts/Poppins-Bold.ttf"),
-    "Poppins-Regular": require("../assets/Fonts/Poppins-Regular.ttf"),
-    "Oxygen-Bold": require("../assets/Fonts/Oxygen-Bold.ttf"),
-    "Oxygen-Regular": require("../assets/Fonts/Oxygen-Regular.ttf"),
-  });
-
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
-
-  if (!loaded && !error) {
-    return null;
-  }
 
   const logoPath1 = require("../assets/Images/parking.png");
 
