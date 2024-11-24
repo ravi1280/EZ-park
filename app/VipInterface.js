@@ -45,7 +45,7 @@ export default function home() {
             style={styleSheet.avatar}
           />
           <View style={styleSheet.userDetails}>
-            <Text style={styleSheet.accountText}>Check In</Text>
+            <Text style={styleSheet.accountText}>Registerd Users</Text>
           </View>
         </View>
       </View>
