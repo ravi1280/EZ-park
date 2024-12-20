@@ -13,12 +13,13 @@ SplashScreen.preventAutoHideAsync();
 export default function home() {
   const [distance, setDistance] = useState(false);
   const [error1, setError1] = useState(null);
+  const [gettotal, settotal] = useState(null);
 
   
 
   useEffect(() => {
     const ws = new WebSocket(
-      "ws://c9d5-112-134-231-66.ngrok-free.app/EZPark/distance"
+      "ws://5bf5-112-134-226-44.ngrok-free.app/EZPark/distance"
     );
 
     ws.onopen = () => {
@@ -93,7 +94,7 @@ export default function home() {
         </View>
       ) : (
         <View style={styleSheet.alertView}>
-          <Text>none</Text>
+          <Text style={styleSheet.alertText}>Not Signal </Text>
         </View>
       )}
 
@@ -106,6 +107,7 @@ export default function home() {
           <View style={styleSheet.priceCount}>
             <Text>Total Price</Text>
             <Text>${gettotal}</Text>
+            {/* <Text>${gettotal}</Text> */}
           </View>
         </View>
         <TouchableOpacity
@@ -161,6 +163,10 @@ const styleSheet = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 70,
+    height:200
+  },
+  alertText:{
+    fontSize:20,
   },
   profileInfo: {
     flexDirection: "row",
