@@ -85,11 +85,12 @@ export default function home() {
             Alert.alert("Message",json.message);
           }
         }
+       
         }}
          
         >
           <View style={styleSheet.inputView2}>
-            <Text>Parking Slot Reseved</Text>
+            <Text>Add Vehical</Text>
           </View>
         </TouchableOpacity>
 
@@ -111,7 +112,32 @@ export default function home() {
           >
             <Text>Gate Close</Text>
           </TouchableOpacity>
+          
         </View>
+        <TouchableOpacity
+        onPress={async () => {
+         
+
+        let response1 = await fetch(process.env.EXPO_PUBLIC_URL+"/EZPark/parkingSlot?data=1");
+       
+
+        if (response1.ok) {
+          //convert to js object
+          let json1 = await response1.json();
+          if (json1.success) {
+            Alert.alert("Message","Parking Slot Reseved !"); 
+            console.log(json1.slot);
+          } else {
+            Alert.alert("Message","Error");
+          }
+        }
+        }}
+         
+        >
+          <View style={styleSheet.inputView2}>
+            <Text>Parking Slot Reseved</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );

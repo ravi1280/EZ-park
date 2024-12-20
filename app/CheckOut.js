@@ -107,7 +107,22 @@ export default function CheckOut() {
             <Text>Gate Close</Text>
           </View>
         </View>
-        <TouchableOpacity onpress={()=>{Alert.alert("Message"," Success!");}}>
+        <TouchableOpacity onPress={async () => {
+         
+        let response1 = await fetch(process.env.EXPO_PUBLIC_URL+"/EZPark/parkingSlot?data=2");
+       
+
+        if (response1.ok) {
+          //convert to js object
+          let json1 = await response1.json();
+          if (json1.success) {
+            Alert.alert("Message","Parking Slot Open Success");
+            console.log(json1.slot);
+          } else {
+            Alert.alert("Message","Error");
+          }
+        }
+        }}>
           <View style={styleSheet.inputView2}>
             <Text>Parking Slot Open</Text>
           </View>

@@ -11,9 +11,10 @@ import LottieView from "lottie-react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function home() {
-  const [distance, setDistance] = useState(false);
+  const [distance, setDistance] = useState(true);
   const [error1, setError1] = useState(null);
   const [gettotal, settotal] = useState(null);
+  const [getSlot, setSlot] = useState(null);
 
   
 
@@ -66,6 +67,22 @@ export default function home() {
     }
     totalPrice();
   }, []);
+  useEffect(() => {
+    async function parkingSlot() {
+      let response = await fetch(
+        process.env.EXPO_PUBLIC_URL + "/EZPark/parkingSlot?data=0"
+      );
+      if (response.ok) {
+        //convert to js object
+        let json = await response.json();
+        if (json.success) {
+          setSlot(json.slot);
+        } else {
+        }
+      }
+    }
+    parkingSlot();
+  }, []);
 
   const logoPath1 = require("../assets/Images/parking.png");
 
@@ -94,7 +111,7 @@ export default function home() {
         </View>
       ) : (
         <View style={styleSheet.alertView}>
-          <Text style={styleSheet.alertText}>Not Signal </Text>
+          <Text style={styleSheet.alertText}>No Signal !! </Text>
         </View>
       )}
 
@@ -102,7 +119,7 @@ export default function home() {
         <View style={styleSheet.countGroup}>
           <View style={styleSheet.slotCount}>
             <Text>Slot Count</Text>
-            <Text>20/5</Text>
+            <Text>{getSlot}/20</Text>
           </View>
           <View style={styleSheet.priceCount}>
             <Text>Total Price</Text>
@@ -167,6 +184,7 @@ const styleSheet = StyleSheet.create({
   },
   alertText:{
     fontSize:20,
+    color:303030,
   },
   profileInfo: {
     flexDirection: "row",
