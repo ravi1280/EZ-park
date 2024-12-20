@@ -119,7 +119,7 @@ export default function CheckOut() {
             Alert.alert("Message","Parking Slot Open Success");
             console.log(json1.slot);
           } else {
-            Alert.alert("Message","Error");
+            Alert.alert("Message",json1.message);
           }
         }
         }}>

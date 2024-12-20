@@ -11,7 +11,7 @@ import LottieView from "lottie-react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function home() {
-  const [distance, setDistance] = useState(true);
+  const [distance, setDistance] = useState(false);
   const [error1, setError1] = useState(null);
   const [gettotal, settotal] = useState(null);
   const [getSlot, setSlot] = useState(null);
@@ -111,7 +111,7 @@ export default function home() {
         </View>
       ) : (
         <View style={styleSheet.alertView}>
-          <Text style={styleSheet.alertText}>No Signal !! </Text>
+          <Text style={styleSheet.alertText}>No Vehical Signal !! </Text> 
         </View>
       )}
 
@@ -119,7 +119,7 @@ export default function home() {
         <View style={styleSheet.countGroup}>
           <View style={styleSheet.slotCount}>
             <Text>Slot Count</Text>
-            <Text>{getSlot}/20</Text>
+            <Text>{getSlot}/10</Text>
           </View>
           <View style={styleSheet.priceCount}>
             <Text>Total Price</Text>

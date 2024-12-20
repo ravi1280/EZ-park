@@ -128,7 +128,7 @@ export default function home() {
             Alert.alert("Message","Parking Slot Reseved !"); 
             console.log(json1.slot);
           } else {
-            Alert.alert("Message","Error");
+            Alert.alert("Message",json1.message);
           }
         }
         }}
