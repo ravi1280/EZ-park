@@ -100,12 +100,19 @@ export default function CheckOut() {
         
 
         <View style={styleSheet.gate} >
-          <View style={styleSheet.inputView3}>
+          <TouchableOpacity style={styleSheet.inputView3}
+          onPress={async () => {
+            let response = await fetch("http://192.168.1.6?status=90");
+            Alert.alert("Message", " Success!");
+          }}>
             <Text>Gate Open</Text>
-          </View>
-          <View style={styleSheet.inputView3}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styleSheet.inputView3} onPress={async () => {
+              let response = await fetch("http://192.168.1.6?status=70");
+              Alert.alert("Message", " Success!");
+            }}>
             <Text>Gate Close</Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity onPress={async () => {
          

@@ -98,7 +98,14 @@ export default function home() {
           <TouchableOpacity
             style={styleSheet.inputView3}
             onPress={async () => {
-              let response = await fetch("http://192.168.1.4?status=90");
+              let response01 = await fetch("http://192.168.1.6?status=90");
+              if (response01.ok) {
+                let data = await response01.json(); // If the server returns JSON data
+                console.log("Response data:", data);
+              } else {
+                console.log("HTTP Error:", response01.status);
+              }
+
               Alert.alert("Message", " Success!");
             }}
           >
@@ -107,7 +114,13 @@ export default function home() {
           <TouchableOpacity
             style={styleSheet.inputView3}
             onPress={async () => {
-              let response = await fetch("http://192.168.1.4?status=80");
+              let response = await fetch("http://192.168.1.6?status=70");
+              if (response.ok) {
+                let data = await response.json(); // If the server returns JSON data
+                console.log("Response data:", data);
+              } else {
+                console.log("HTTP Error:", response.status);
+              }
             }}
           >
             <Text>Gate Close</Text>

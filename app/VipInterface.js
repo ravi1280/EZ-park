@@ -19,11 +19,44 @@ import { router } from "expo-router";
 SplashScreen.preventAutoHideAsync();
 
 export default function home() {
-  const [getmobile, setmobile] = useState("");
-  const [getvehhicalNumber, setvehicalNumber] = useState("");
-
+  // const [getmobile, setmobile] = useState("");
+  // const [getvehhicalNumber, setvehicalNumber] = useState("");
 
   const logoPath1 = require("../assets/Images/parking.png");
+
+  useEffect(() => {
+    const ws = new WebSocket(
+      "ws://special-lamprey-charmed.ngrok-free.app/EZPark/rfid"
+    );
+
+    ws.onopen = () => {
+      console.log("WebSocket connection opened");
+    };
+
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        // setDistance(data.distance);
+        console.log(data.Uid);
+        Alert.alert("message","User ID is"+data.Uid);
+      } catch (err) {
+        console.error("Error parsing message:", err);
+      }
+    };
+
+    ws.onerror = (e) => {
+      // setError(e.message);
+      console.error("WebSocket error:", e.message);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+
+    return () => {
+      ws.close();
+    };
+  }, []);
 
   return (
     <LinearGradient colors={["#FFF9B0", "#fff"]} style={styleSheet.Lview1}>
@@ -45,7 +78,7 @@ export default function home() {
             style={styleSheet.avatar}
           />
           <View style={styleSheet.userDetails}>
-            <Text style={styleSheet.accountText}>Registerd Users</Text>
+            <Text style={styleSheet.accountText}>VIP Members</Text>
           </View>
         </View>
       </View>

@@ -20,7 +20,7 @@ export default function home() {
 
   useEffect(() => {
     const ws = new WebSocket(
-      "ws://5bf5-112-134-226-44.ngrok-free.app/EZPark/distance"
+      "ws://special-lamprey-charmed.ngrok-free.app/EZPark/distance"
     );
 
     ws.onopen = () => {
@@ -89,6 +89,7 @@ export default function home() {
   return (
     <LinearGradient colors={["#FFF9B0", "#fff"]} style={styleSheet.Lview1}>
       <StatusBar backgroundColor={"#fff"} />
+      
 
       <View style={styleSheet.header}>
         <View style={styleSheet.profileInfo}>
@@ -148,13 +149,14 @@ export default function home() {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            router.push("/test");
+            router.push("/VipInterface");
           }}
         >
           <View style={styleSheet.check}>
-            <Text>test</Text>
+            <Text>VIP Member</Text>
           </View>
         </TouchableOpacity>
+       
       </View>
     </LinearGradient>
   );
